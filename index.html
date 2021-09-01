@@ -1,24 +1,43 @@
 
-<!Docktype html>
-<html>
-  <head>
-        </head>
-  <body>
-          <style>
-                  html, body
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+
+  <meta charset="UTF-8">
+  
+<link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+
+
+<link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+
+<link rel="mask-icon" type="" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" />
+
+
+  <title>infinite loop (smartphone not supported)</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+  
+  
+<style>
+html,
+body {
   height: 100%;
   width: 100%;
-
-body
+}
+body {
   font-size: 62.5%;
   background: #000;
   overflow: hidden;
-  color: #FFF;
+  color: #fff;
   font-family: serif;
-  overscroll-behavior: none;
-
-#loading
-  background: black;
+  -ms-scroll-chaining: none;
+      overscroll-behavior: none;
+}
+#loading {
+  background: #000;
   position: fixed;
   top: 0;
   left: 0;
@@ -31,54 +50,94 @@ body
   visibility: visible;
   opacity: 1;
   transition: visibility 1.6s, opacity 1.6s;
-  .circle
-    width: 50px;
-    height: 50px;
-    background: white;
-    border-radius: 50%;
-    opacity: 0;
-    transform: scale(0, 0);
-    animation: circle-animation 1.6s ease-in-out 0s infinite normal none;
- 
-#loading.loaded
+}
+#loading .circle {
+  width: 50px;
+  height: 50px;
+  background: #fff;
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0, 0);
+  -webkit-animation: circle-animation 1.6s ease-in-out 0s infinite normal none;
+          animation: circle-animation 1.6s ease-in-out 0s infinite normal none;
+}
+#loading.loaded {
   visibility: hidden;
   opacity: 0;
-    
-#container
+}
+#container {
   width: 100%;
   height: 100%;
-  .box
-    color: white;
-    font-size: 4.8rem;
-    position: fixed;
-    z-index: 1;
-    top: 50%;
-    left: 10%;
-    transform: translateY(-50%);
-    overflow: hidden;
-    h1
-      padding-bottom: 0.8rem;
-    p
-      font-size: 0.8rem;
-
+}
+#container .box {
+  color: #fff;
+  font-size: 4.8rem;
+  position: fixed;
+  z-index: 1;
+  top: 50%;
+  left: 10%;
+  transform: translateY(-50%);
+  overflow: hidden;
+}
+#container .box h1 {
+  padding-bottom: 0.8rem;
+}
+#container .box p {
+  font-size: 0.8rem;
+}
 /** css animation */
-@keyframes circle-animation
-  0%
+@-webkit-keyframes circle-animation {
+  0% {
     opacity: 0;
     transform: scale(0, 0);
-  50%
+  }
+  50% {
     opacity: 1;
     transform: scale(1, 1);
-          </style>
-    #loading
-  .circle
-#container
-  .box
-    h1 Alish
-    p Hello, I'm here to destroy the Earth!
-          
-          <script>
-                  /**
+  }
+}
+@keyframes circle-animation {
+  0% {
+    opacity: 0;
+    transform: scale(0, 0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1, 1);
+  }
+}
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+
+</head>
+
+<body translate="no" >
+  <div id="loading">
+  <div class="circle"></div>
+</div>
+<div id="container">
+  <div class="box">
+    <h1>Alish</h1>
+    <p>Hello, I'm here to destroy the Earth!</p>
+  </div>
+</div>
+    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-1b93190375e9ccc259df3a57c1abc0e64599724ae30d7ea4c6877eb615f89387.js"></script>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/stats.js/16/Stats.min.js'></script>
+      <script id="rendered-js" type="module">
+/**
  * GPGPU Particles
  * Referred to
  * https://www.youtube.com/watch?v=oLH00MXTqNg
@@ -373,12 +432,12 @@ void main() {
 class Sketch {
   constructor() {
     this.renderer =
-      new THREE.WebGLRenderer({
-        antialias: true,
-        alpha: true
-      });
+    new THREE.WebGLRenderer({
+      antialias: true,
+      alpha: true });
+
     document.getElementById('container').appendChild(this.renderer.domElement);
-    
+
     //this.statsInit();
     this.init();
   }
@@ -391,11 +450,11 @@ class Sketch {
     this.stats.domElement.style.top = '0';
     document.getElementById('container').appendChild(this.stats.domElement);
   }
-  
+
   init() {
     /** time */
     this.time = new THREE.Clock(true);
-    
+
     /** mouse */
     this.amp = 0.0001;
     this.mouse = new THREE.Vector2();
@@ -403,24 +462,24 @@ class Sketch {
     this.touchMove = new THREE.Vector2();
     this.touchEnd = new THREE.Vector2();
     this.pressed = false;
-    
+
     /** canvas size */
     this.width = window.innerWidth;
     this.height = window.innerHeight;
 
     /** scene */
     this.scene = new THREE.Scene();
-    
+
     /** setup and render */
     this.setupCanvas();
     this.setupCamera();
     //this.setupLight();
     this.setupShape();
     this.setupEvents();
-    
+
     this.render();
   }
-  
+
   setupCanvas() {
     /** renderer */
     this.renderer.setSize(this.width, this.height);
@@ -428,7 +487,7 @@ class Sketch {
     /** Because it's so heavy. */
     this.renderer.setPixelRatio(0.75);
     this.renderer.setClearColor(0x000000, 1.0);
-    
+
     /** style */
     this.renderer.domElement.style.position = 'fixed';
     this.renderer.domElement.style.top = '0';
@@ -436,25 +495,25 @@ class Sketch {
     this.renderer.domElement.style.zIndex = '0';
     this.renderer.domElement.style.outline = 'none';
   }
-  
+
   setupCamera() {
     const fov = 70;
-    const fovRadian = (fov / 2) * (Math.PI / 180);
-    
+    const fovRadian = fov / 2 * (Math.PI / 180);
+
     this.dist = this.height / 2 / Math.tan(fovRadian);
     this.camera =
-      new THREE.PerspectiveCamera(
-        fov,
-        this.width / this.height,
-        0.01,
-        1000
-      );
+    new THREE.PerspectiveCamera(
+    fov,
+    this.width / this.height,
+    0.01,
+    1000);
+
     this.camera.position.set(0, 0, 5);
     this.camera.lookAt(new THREE.Vector3());
     this.scene.add(this.camera);
     //this.controls = new OrbitControls(this.camera, this.renderer.domElement);
   }
-  
+
   setupLight() {
     /** directinal light */
     this.directionalLight = new THREE.DirectionalLight(0xffffff);
@@ -465,45 +524,45 @@ class Sketch {
     this.spotLight.position.set(0, 300, 0);
     this.scene.add(this.spotLight);
   }
-  
+
   setupShape() {
     this.shapes = new Array();
     const s = new Shape(this);
     this.shapes.push(s);
   }
-  
+
   setupGui() {
     this.settings = {
-      scale: 3,
-    };
+      scale: 3 };
+
     this.gui = new dat.GUI();
     this.gui.add(this.settings, 'scale', 1, 10, 1).onChange(() => this.init());
   }
-  
+
   render() {
     //this.stats.begin(); // -------------------- //
-    
+
     const time = this.time.getElapsedTime();
-    
+
     /** camera */
     this.camera.position.set(
-      Math.cos(-time * 0.1) * 5,
-      Math.cos(time * 0.1) * 5,
-      Math.sin(-time * 0.1) * 5
-    );
+    Math.cos(-time * 0.1) * 5,
+    Math.cos(time * 0.1) * 5,
+    Math.sin(-time * 0.1) * 5);
+
     this.camera.lookAt(new THREE.Vector3());
-    
+
     /** shapes */
     for (let i = 0; i < this.shapes.length; i++) {
       this.shapes[i].update(time);
     }
-    
+
     this.renderer.render(this.scene, this.camera);
-    
+
     //this.stats.end();   // -------------------- //
     this.animationId = requestAnimationFrame(this.render.bind(this));
   }
-  
+
   setupEvents() {
     window.addEventListener('resize', this.onResize.bind(this), false);
     window.addEventListener('mousemove', this.onMousemove.bind(this), false);
@@ -511,47 +570,47 @@ class Sketch {
     this.renderer.domElement.addEventListener('touchstart', this.onTouchstart.bind(this), false);
     this.renderer.domElement.addEventListener('touchmove', this.onTouchmove.bind(this), false);
     this.renderer.domElement.addEventListener('touchend', this.onTouchend.bind(this), false);
-    this.renderer.domElement.addEventListener('mousedown',  () => {
+    this.renderer.domElement.addEventListener('mousedown', () => {
       this.pressed = true;
     });
-    this.renderer.domElement.addEventListener('mouseup',  () => {
+    this.renderer.domElement.addEventListener('mouseup', () => {
       this.pressed = false;
     });
   }
-  
+
   onResize() {
     const id = this.animationId;
-    
+
     cancelAnimationFrame(id);
     this.init();
   }
-  
+
   onMousemove(event) {
-    this.mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-    this.mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+    this.mouse.x = event.clientX / window.innerWidth * 2 - 1;
+    this.mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
   }
-  
+
   onWheel(event) {
     this.amp -= event.deltaY * 0.001;
   }
-  
+
   onTouchstart(event) {
     const touch = event.targetTouches[0];
-    
+
     this.touchStart.x = touch.pageX;
     this.touchStart.y = touch.pageY;
   }
-  
+
   onTouchmove(event) {
     const touch = event.targetTouches[0];
-    
+
     this.touchMove.x = touch.pageX;
     this.touchMove.y = touch.pageY;
     this.touchEnd.x = this.touchStart.x - this.touchMove.x;
     this.touchEnd.y = this.touchStart.y - this.touchMove.y;
-    
+
     this.amp -= this.touchEnd.y * 0.001;
-    
+
     this.mouse.x = event.clientX;
     this.mouse.y = event.clientY;
   }
@@ -563,11 +622,11 @@ class Sketch {
     this.touchMove.y = null;
     this.touchEnd.x = null;
     this.touchEnd.y = null;
-    
+
     this.mouse.x = null;
     this.mouse.y = null;
-  }
-}
+  }}
+
 
 /**
  * shape class
@@ -581,76 +640,76 @@ class Shape {
     this.sketch = sketch;
     this.init();
   }
-  
+
   /**
    * initialize shape
    */
   init() {
     this.initGPGPU();
-    
+
     this.geometry = new THREE.BufferGeometry();
     this.material = new THREE.ShaderMaterial({
       side: THREE.DoubleSide,
       uniforms: {
-        uTime: {type: 'f', value: 0},
-        uPressed: {value: this.sketch.pressed},
-        texturePosition: {type: 'v4', value: null},
-        textureVelocity: {type: 'v4', value: null},
-      },
+        uTime: { type: 'f', value: 0 },
+        uPressed: { value: this.sketch.pressed },
+        texturePosition: { type: 'v4', value: null },
+        textureVelocity: { type: 'v4', value: null } },
+
       blending: THREE.AdditiveBlending,
       transparent: true,
       vertexShader: vertexShader,
-      fragmentShader: fragmentShader
-    });
-    
+      fragmentShader: fragmentShader });
+
+
     this.num = this.sketch.width < 500 ? 500 : 500;
-    
+
     let positions = new Float32Array(this.num * this.num * 3);
     let reference = new Float32Array(this.num * this.num * 2);
-    
+
     for (let i = 0; i < this.num * this.num; i++) {
       positions.set([0, 0, 0], i * 3);
     }
-    
+
     for (let j = 0; j < this.num; j++) {
       for (let i = 0; i < this.num; i++) {
         const index = j * this.num + i;
-        
+
         reference.set([i / this.num, j / this.num], index * 2);
       }
     }
-    
+
     this.geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
     this.geometry.setAttribute('reference', new THREE.BufferAttribute(reference, 2));
-    
+
     this.mesh = new THREE.Points(this.geometry, this.material);
     this.sketch.scene.add(this.mesh);
   }
-  
+
   initGPGPU() {
     this.gpuCompute = new GPUComputationRenderer(this.sketch.width, this.sketch.height, this.sketch.renderer);
-    
+
     this.dataTexturePosition = this.gpuCompute.createTexture();
     this.dataTextureVelocity = this.gpuCompute.createTexture();
-    
+
     this.setPositions(this.dataTexturePosition);
     this.setVelocities(this.dataTextureVelocity);
-    
+
     this.positionVariable = this.gpuCompute.addVariable('texturePosition', positionSimulation, this.dataTexturePosition);
     this.velocityVariable = this.gpuCompute.addVariable('textureVelocity', velocitySimulation, this.dataTextureVelocity);
-    
+
     /** It does not work without these codes. */
-    this.gpuCompute.setVariableDependencies( this.velocityVariable, [ this.positionVariable, this.velocityVariable ] );
-    this.gpuCompute.setVariableDependencies( this.positionVariable, [ this.positionVariable, this.velocityVariable ] );
-    
-    this.positionVariable.material.uniforms['uTime'] = {type: 'f', value: 0};
-    this.positionVariable.material.uniforms['uScale'] = {type: 'f', value: 0.001};
+    this.gpuCompute.setVariableDependencies(this.velocityVariable, [this.positionVariable, this.velocityVariable]);
+    this.gpuCompute.setVariableDependencies(this.positionVariable, [this.positionVariable, this.velocityVariable]);
+
+    this.positionVariable.material.uniforms['uTime'] = { type: 'f', value: 0 };
+    this.positionVariable.material.uniforms['uScale'] = { type: 'f', value: 0.001 };
     this.gpuCompute.init();
   }
-  
+
   setVelocities(texture) {
     const arr = texture.image.data;
-    
+
     for (let i = 0; i < arr.length; i += 4) {
       const r = Math.PI * 2 * Math.random();
       const rand = Math.random();
@@ -660,10 +719,10 @@ class Shape {
       arr[i + 3] = 0.0;
     }
   }
-  
+
   setPositions(texture) {
     const arr = texture.image.data;
-    
+
     for (let i = 0; i < arr.length; i += 4) {
       const r = Math.random();
       const x = 0.0;
@@ -674,27 +733,27 @@ class Shape {
       arr[i + 3] = r;
     }
   }
-  
+
   /**
    * update shape
    * @param {number} time - time 
    */
   update(time) {
     this.gpuCompute.compute();
-    
+
     this.material.uniforms.texturePosition.value =
-      this.gpuCompute.getCurrentRenderTarget(this.positionVariable).texture;
+    this.gpuCompute.getCurrentRenderTarget(this.positionVariable).texture;
     this.material.uniforms.textureVelocity.value =
-      this.gpuCompute.getCurrentRenderTarget(this.velocityVariable).texture;
-    
+    this.gpuCompute.getCurrentRenderTarget(this.velocityVariable).texture;
+
     this.mesh.material.uniforms.uTime.value = time;
     this.mesh.material.uniforms.uPressed.value = this.sketch.pressed;
-    
+
     // does not pass time to positionVariable
     this.positionVariable.material.uniforms.uTime.value = time;
     this.positionVariable.material.uniforms.uScale.value = (time * 0.3 + 0.0001) % 15.0;
-  }
-}
+  }}
+
 
 /**
  * GPGPU
@@ -702,7 +761,7 @@ class Shape {
  */
 class GPUComputationRenderer {
 
-  constructor( sizeX, sizeY, renderer ) {
+  constructor(sizeX, sizeY, renderer) {
 
     this.variables = [];
     this.currentTextureIndex = 0;
@@ -712,23 +771,23 @@ class GPUComputationRenderer {
     camera.position.z = 1;
     const passThruUniforms = {
       passThruTexture: {
-        value: null
-      }
-    };
-    const passThruShader = createShaderMaterial( getPassThroughFragmentShader(), passThruUniforms );
-    const mesh = new THREE.Mesh( new THREE.PlaneGeometry( 2, 2 ), passThruShader );
-    scene.add( mesh );
+        value: null } };
 
-    this.setDataType = function ( type ) {
+
+    const passThruShader = createShaderMaterial(getPassThroughFragmentShader(), passThruUniforms);
+    const mesh = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), passThruShader);
+    scene.add(mesh);
+
+    this.setDataType = function (type) {
 
       dataType = type;
       return this;
 
     };
 
-    this.addVariable = function ( variableName, computeFragmentShader, initialValueTexture ) {
+    this.addVariable = function (variableName, computeFragmentShader, initialValueTexture) {
 
-      const material = this.createShaderMaterial( computeFragmentShader );
+      const material = this.createShaderMaterial(computeFragmentShader);
       const variable = {
         name: variableName,
         initialValueTexture: initialValueTexture,
@@ -738,14 +797,14 @@ class GPUComputationRenderer {
         wrapS: null,
         wrapT: null,
         minFilter: THREE.NearestFilter,
-        magFilter: THREE.NearestFilter
-      };
-      this.variables.push( variable );
+        magFilter: THREE.NearestFilter };
+
+      this.variables.push(variable);
       return variable;
 
     };
 
-    this.setVariableDependencies = function ( variable, dependencies ) {
+    this.setVariableDependencies = function (variable, dependencies) {
 
       variable.dependencies = dependencies;
 
@@ -753,44 +812,44 @@ class GPUComputationRenderer {
 
     this.init = function () {
 
-      if ( renderer.capabilities.isWebGL2 === false && renderer.extensions.has( 'OES_texture_float' ) === false ) {
+      if (renderer.capabilities.isWebGL2 === false && renderer.extensions.has('OES_texture_float') === false) {
 
         return 'No OES_texture_float support for float textures.';
 
       }
 
-      if ( renderer.capabilities.maxVertexTextures === 0 ) {
+      if (renderer.capabilities.maxVertexTextures === 0) {
 
         return 'No support for vertex shader textures.';
 
       }
 
-      for ( let i = 0; i < this.variables.length; i ++ ) {
+      for (let i = 0; i < this.variables.length; i++) {
 
-        const variable = this.variables[ i ]; // Creates rendertargets and initialize them with input texture
+        const variable = this.variables[i]; // Creates rendertargets and initialize them with input texture
 
-        variable.renderTargets[ 0 ] = this.createRenderTarget( sizeX, sizeY, variable.wrapS, variable.wrapT, variable.minFilter, variable.magFilter );
-        variable.renderTargets[ 1 ] = this.createRenderTarget( sizeX, sizeY, variable.wrapS, variable.wrapT, variable.minFilter, variable.magFilter );
-        this.renderTexture( variable.initialValueTexture, variable.renderTargets[ 0 ] );
-        this.renderTexture( variable.initialValueTexture, variable.renderTargets[ 1 ] ); // Adds dependencies uniforms to the THREE.ShaderMaterial
+        variable.renderTargets[0] = this.createRenderTarget(sizeX, sizeY, variable.wrapS, variable.wrapT, variable.minFilter, variable.magFilter);
+        variable.renderTargets[1] = this.createRenderTarget(sizeX, sizeY, variable.wrapS, variable.wrapT, variable.minFilter, variable.magFilter);
+        this.renderTexture(variable.initialValueTexture, variable.renderTargets[0]);
+        this.renderTexture(variable.initialValueTexture, variable.renderTargets[1]); // Adds dependencies uniforms to the THREE.ShaderMaterial
 
         const material = variable.material;
         const uniforms = material.uniforms;
 
-        if ( variable.dependencies !== null ) {
+        if (variable.dependencies !== null) {
 
-          for ( let d = 0; d < variable.dependencies.length; d ++ ) {
+          for (let d = 0; d < variable.dependencies.length; d++) {
 
-            const depVar = variable.dependencies[ d ];
+            const depVar = variable.dependencies[d];
 
-            if ( depVar.name !== variable.name ) {
+            if (depVar.name !== variable.name) {
 
               // Checks if variable exists
               let found = false;
 
-              for ( let j = 0; j < this.variables.length; j ++ ) {
+              for (let j = 0; j < this.variables.length; j++) {
 
-                if ( depVar.name === this.variables[ j ].name ) {
+                if (depVar.name === this.variables[j].name) {
 
                   found = true;
                   break;
@@ -799,7 +858,7 @@ class GPUComputationRenderer {
 
               }
 
-              if ( ! found ) {
+              if (!found) {
 
                 return 'Variable dependency not found. Variable=' + variable.name + ', dependency=' + depVar.name;
 
@@ -807,9 +866,9 @@ class GPUComputationRenderer {
 
             }
 
-            uniforms[ depVar.name ] = {
-              value: null
-            };
+            uniforms[depVar.name] = {
+              value: null };
+
             material.fragmentShader = '\nuniform sampler2D ' + depVar.name + ';\n' + material.fragmentShader;
 
           }
@@ -828,25 +887,25 @@ class GPUComputationRenderer {
       const currentTextureIndex = this.currentTextureIndex;
       const nextTextureIndex = this.currentTextureIndex === 0 ? 1 : 0;
 
-      for ( let i = 0, il = this.variables.length; i < il; i ++ ) {
+      for (let i = 0, il = this.variables.length; i < il; i++) {
 
-        const variable = this.variables[ i ]; // Sets texture dependencies uniforms
+        const variable = this.variables[i]; // Sets texture dependencies uniforms
 
-        if ( variable.dependencies !== null ) {
+        if (variable.dependencies !== null) {
 
           const uniforms = variable.material.uniforms;
 
-          for ( let d = 0, dl = variable.dependencies.length; d < dl; d ++ ) {
+          for (let d = 0, dl = variable.dependencies.length; d < dl; d++) {
 
-            const depVar = variable.dependencies[ d ];
-            uniforms[ depVar.name ].value = depVar.renderTargets[ currentTextureIndex ].texture;
+            const depVar = variable.dependencies[d];
+            uniforms[depVar.name].value = depVar.renderTargets[currentTextureIndex].texture;
 
           }
 
         } // Performs the computation for this variable
 
 
-        this.doRenderTarget( variable.material, variable.renderTargets[ nextTextureIndex ] );
+        this.doRenderTarget(variable.material, variable.renderTargets[nextTextureIndex]);
 
       }
 
@@ -854,42 +913,42 @@ class GPUComputationRenderer {
 
     };
 
-    this.getCurrentRenderTarget = function ( variable ) {
+    this.getCurrentRenderTarget = function (variable) {
 
-      return variable.renderTargets[ this.currentTextureIndex ];
-
-    };
-
-    this.getAlternateRenderTarget = function ( variable ) {
-
-      return variable.renderTargets[ this.currentTextureIndex === 0 ? 1 : 0 ];
+      return variable.renderTargets[this.currentTextureIndex];
 
     };
 
-    function addResolutionDefine( materialShader ) {
+    this.getAlternateRenderTarget = function (variable) {
 
-      materialShader.defines.resolution = 'vec2( ' + sizeX.toFixed( 1 ) + ', ' + sizeY.toFixed( 1 ) + ' )';
+      return variable.renderTargets[this.currentTextureIndex === 0 ? 1 : 0];
+
+    };
+
+    function addResolutionDefine(materialShader) {
+
+      materialShader.defines.resolution = 'vec2( ' + sizeX.toFixed(1) + ', ' + sizeY.toFixed(1) + ' )';
 
     }
 
     this.addResolutionDefine = addResolutionDefine; // The following functions can be used to compute things manually
 
-    function createShaderMaterial( computeFragmentShader, uniforms ) {
+    function createShaderMaterial(computeFragmentShader, uniforms) {
 
       uniforms = uniforms || {};
-      const material = new THREE.ShaderMaterial( {
+      const material = new THREE.ShaderMaterial({
         uniforms: uniforms,
         vertexShader: getPassThroughVertexShader(),
-        fragmentShader: computeFragmentShader
-      } );
-      addResolutionDefine( material );
+        fragmentShader: computeFragmentShader });
+
+      addResolutionDefine(material);
       return material;
 
     }
 
     this.createShaderMaterial = createShaderMaterial;
 
-    this.createRenderTarget = function ( sizeXTexture, sizeYTexture, wrapS, wrapT, minFilter, magFilter ) {
+    this.createRenderTarget = function (sizeXTexture, sizeYTexture, wrapS, wrapT, minFilter, magFilter) {
 
       sizeXTexture = sizeXTexture || sizeX;
       sizeYTexture = sizeYTexture || sizeY;
@@ -897,45 +956,45 @@ class GPUComputationRenderer {
       wrapT = wrapT || THREE.ClampToEdgeWrapping;
       minFilter = minFilter || THREE.NearestFilter;
       magFilter = magFilter || THREE.NearestFilter;
-      const renderTarget = new THREE.WebGLRenderTarget( sizeXTexture, sizeYTexture, {
+      const renderTarget = new THREE.WebGLRenderTarget(sizeXTexture, sizeYTexture, {
         wrapS: wrapS,
         wrapT: wrapT,
         minFilter: minFilter,
         magFilter: magFilter,
         format: THREE.RGBAFormat,
         type: dataType,
-        depthBuffer: false
-      } );
+        depthBuffer: false });
+
       return renderTarget;
 
     };
 
     this.createTexture = function () {
 
-      const data = new Float32Array( sizeX * sizeY * 4 );
-      return new THREE.DataTexture( data, sizeX, sizeY, THREE.RGBAFormat, THREE.FloatType );
+      const data = new Float32Array(sizeX * sizeY * 4);
+      return new THREE.DataTexture(data, sizeX, sizeY, THREE.RGBAFormat, THREE.FloatType);
 
     };
 
-    this.renderTexture = function ( input, output ) {
+    this.renderTexture = function (input, output) {
 
       // Takes a texture, and render out in rendertarget
       // input = Texture
       // output = RenderTarget
       passThruUniforms.passThruTexture.value = input;
-      this.doRenderTarget( passThruShader, output );
+      this.doRenderTarget(passThruShader, output);
       passThruUniforms.passThruTexture.value = null;
 
     };
 
-    this.doRenderTarget = function ( material, output ) {
+    this.doRenderTarget = function (material, output) {
 
       const currentRenderTarget = renderer.getRenderTarget();
       mesh.material = material;
-      renderer.setRenderTarget( output );
-      renderer.render( scene, camera );
+      renderer.setRenderTarget(output);
+      renderer.render(scene, camera);
       mesh.material = passThruShader;
-      renderer.setRenderTarget( currentRenderTarget );
+      renderer.setRenderTarget(currentRenderTarget);
 
     }; // Shaders
 
@@ -952,9 +1011,9 @@ class GPUComputationRenderer {
 
     }
 
-  }
+  }}
 
-}
+
 
 (() => {
   window.addEventListener('load', () => {
@@ -966,6 +1025,12 @@ class GPUComputationRenderer {
     new Sketch();
   });
 })();
-          </script>
-  </body>
-  </html>
+//# sourceURL=pen.js
+    </script>
+
+  
+
+</body>
+
+</html>
+ 
